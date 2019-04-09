@@ -11,8 +11,8 @@ app.use(bodyParser.json());
 
 router.route('/test').get((req, res) => {
 res.status(200).send('hakaton test!');
-}
+});
 
 
 app.use('/', router);
-app.listen(3000, () => console.log('Server running on 4000'))
+app.listen(3000, () => console.log('Server running on 4000'));
