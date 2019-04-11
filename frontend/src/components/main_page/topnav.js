@@ -96,7 +96,13 @@ function ButtonAppBar(props) {
             />
           </Tabs>
           <div style={{ marginLeft: 50 }}>
-            <Button variant="outlined" color="inherit">
+            <Button
+              variant="outlined"
+              color="inherit"
+              onClick={() => {
+                props.moveToDashboard();
+              }}
+            >
               Login
             </Button>
             <Button

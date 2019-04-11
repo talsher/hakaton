@@ -67,7 +67,11 @@ class MainPage extends Component {
       <div
         style={{ backgroundColor: "#d9d9d9", paddingTop: this.addedPadding }}
       >
-        <ButtonAppBar anchors={this.anchors} addedPadding={this.addedPadding} />
+        <ButtonAppBar
+          anchors={this.anchors}
+          addedPadding={this.addedPadding}
+          moveToDashboard={this.props.moveToDashboard}
+        />
         <div className="MainPage-body">
           <Slider>
             {this.images.map(image => (
