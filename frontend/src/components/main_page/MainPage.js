@@ -6,6 +6,8 @@ import { Paper, Typography } from "@material-ui/core";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import IconButton from "@material-ui/core/IconButton";
 import Divider from "@material-ui/core/Divider";
+import Slider from "react-animated-slider";
+import "react-animated-slider/build/horizontal.css";
 
 function HomeIcon(props) {
   return (
@@ -38,6 +40,10 @@ function PagePart(props) {
 class MainPage extends Component {
   addedPadding = 80;
 
+  importAll(r) {
+    return r.keys().map(r);
+  }
+
   constructor(props) {
     super(props);
     this.anchors = {
@@ -47,6 +53,13 @@ class MainPage extends Component {
       partners: React.createRef(),
       contants: React.createRef()
     };
+
+    this.cont = require.context(
+      "../../assets/MainPageImages",
+      false,
+      /\.(png|jpe?g|svg)$/
+    );
+    this.images = cont.keys().map(cont);
   }
 
   render() {
@@ -56,6 +69,25 @@ class MainPage extends Component {
       >
         <ButtonAppBar anchors={this.anchors} addedPadding={this.addedPadding} />
         <div className="MainPage-body">
+          <Slider>
+            {this.images.map(image => (
+              <div key={0} backgroundImage={image} />
+            ))}
+
+            <div
+              key={0}
+              style={{
+                backgroundImage: "../../assets/MainPageImages/logo.jpeg"
+              }}
+            >
+              <h2>bla</h2>
+              <div>bla bla bla</div>
+            </div>
+            <div key={1}>
+              <h2>bla</h2>
+              <div>bla bla bla</div>
+            </div>
+          </Slider>
           <PagePart headline="About" anchors={this.anchors.about} />
           <PagePart headline="Benifits" anchors={this.anchors.benifits} />
           <PagePart
