@@ -59,7 +59,7 @@ class MainPage extends Component {
       false,
       /\.(png|jpe?g|svg)$/
     );
-    this.images = cont.keys().map(cont);
+    this.images = this.cont.keys().map(this.cont);
   }
 
   render() {
