@@ -2,22 +2,23 @@
     {
         "supplier_name": "Supplier1",
         "details": "Text go here",
-        "img_src": "./assets/supplier.jpg"
+        "rate": 4,
+        "img_src": "../../assets/logo.jpeg"
     },
     {
         "supplier_name": "Supplier2",
         "details": "Text go here",
-        "img_src": "./assets/supplier.jpg"
+        "img_src": "../../assets/logo.jpeg"
     },
     {
         "supplier_name": "Supplier3",
         "details": "Text go here",
-        "img_src": "./assets/supplier.jpg"
+        "img_src": "../../assets/logo.jpeg"
     },
     {
         "supplier_name": "Supplier4",
         "details": "Text go here",
-        "img_src": "./assets/supplier.jpg"
+        "img_src": "../../assets/logo.jpeg"
     }
 
 

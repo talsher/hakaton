@@ -77,7 +77,7 @@ class MainPage extends Component {
             <div
               key={0}
               style={{
-                backgroundImage: "../../assets/MainPageImages/logo.jpeg"
+                backgroundimage: "../../assets/MainPageImages/logo.jpeg"
               }}
             >
               <h2>bla</h2>
