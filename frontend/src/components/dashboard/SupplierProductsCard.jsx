@@ -10,19 +10,23 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
+import Icon from '@material-ui/core/Icon';
 import MoneyIcon from "@material-ui/icons/AttachMoney";
 import ShareIcon from "@material-ui/icons/Share";
 
 const styles = {
   card: {
     position: "relative",
-    width: 300,
-    height: 400,
+    width: 200,
+    height: 330,
     float: "left",
     marginRight: 12,
     marginTop: 12
   },
   media: {
+    flex: 1,
+    resizeMode: 'contain',
+    ...StyleSheet.absoluteFillObject,
     height: 140
   },
   text_icons: {
@@ -72,6 +76,7 @@ class SupplierProductsCard extends React.Component {
                     <Typography gutterBottom variant="h5" component="h2">
                       {data.prd_name}
                     </Typography>
+                    <Typography component="p">{data.prd_details}</Typography>
                   </CardContent>
                 </CardActionArea>
                 <CardActions className={classes.card_action_bottom}>
