@@ -17,6 +17,45 @@
   margin-left: 20px;
 }
 
+.SliderImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  color: black;
+  height: 100%;
+  width: 100%;
+}
+
+.HomeTxt{
+  font-family: 'Segoe UI';
+  font-size: 60%;
+}
+
+.HomeList{
+  text-align: center;
+  font-size: 220%;
+}
+
+.ImagePartner {
+  float: left;
+  width: 90%;
+  height: 90%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
