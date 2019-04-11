@@ -45,10 +45,9 @@ function NavbarTab(props) {
   );
 }
 
-function ButtonAppBar(props) {
+function DashBoardNavbar(props) {
   const { classes } = props;
-  const { anchors } = props; // anchor is a dict of actionName: actionAncorCallback
-  const { addedPadding } = props; // added padding for anchors
+
   return (
     <div className={classes.root}>
       <AppBar position="fixed" style={{ backgroundColor: "#279ec7" }}>
@@ -67,44 +66,12 @@ function ButtonAppBar(props) {
             />
             Supply.Me
           </Typography>
-          <Tabs color="inherit" variant="fullWidth" className={classes.grow}>
-            <NavbarTab
-              value="About"
-              anchor={anchors.about}
-              addedPadding={addedPadding}
-            />
-            <NavbarTab
-              value="Benifits"
-              anchor={anchors.benifits}
-              addedPadding={addedPadding}
-            />
 
-            <NavbarTab
-              value="How does it work"
-              anchor={anchors.how_it_works}
-              addedPadding={addedPadding}
-            />
-            <NavbarTab
-              value="Partners"
-              anchor={anchors.partners}
-              addedPadding={addedPadding}
-            />
-            <NavbarTab
-              value="Contants"
-              anchor={anchors.contants}
-              addedPadding={addedPadding}
-            />
-          </Tabs>
-          <div style={{ marginLeft: 50 }}>
+          <Tabs color="inherit" variant="fullWidth" className={classes.grow} />
+
+          <div style={{ marginLeft: 50 }} className={styles.grow}>
             <Button variant="outlined" color="inherit">
-              Login
-            </Button>
-            <Button
-              variant="outlined"
-              color="inherit"
-              className={classes.margin}
-            >
-              Register
+              Logout
             </Button>
           </div>
         </Toolbar>
@@ -113,8 +80,8 @@ function ButtonAppBar(props) {
   );
 }
 
-ButtonAppBar.propTypes = {
+DashBoardNavbar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ButtonAppBar);
+export default withStyles(styles)(DashBoardNavbar);
