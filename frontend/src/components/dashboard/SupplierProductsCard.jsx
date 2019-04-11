@@ -10,7 +10,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import IconStar from "@material-ui/icons/StarRate";
+import MoneyIcon from "@material-ui/icons/AttachMoney";
 import ShareIcon from "@material-ui/icons/Share";
 
 const styles = {
@@ -20,7 +20,7 @@ const styles = {
     height: 400,
     float: "left",
     marginRight: 12,
-    marginBottom: 12
+    marginTop: 12
   },
   media: {
     height: 140
@@ -34,19 +34,22 @@ const styles = {
   }
 };
 
-class SupplierCard extends React.Component {
-  state = { suppliers: [] };
+class SupplierProductsCard extends React.Component {
+  state = { products: [] };
 
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    fetch("http://34.222.158.120:4000/get/suppliers")
+    fetch(
+      "http://34.222.158.120:4000/supplier/products?supplier_name=" +
+        this.props.supplier_name
+    )
       .then(response => response.json())
       .then(resData => {
         console.log(resData);
-        this.setState({ suppliers: resData }); //this is an asynchronous function
+        this.setState({ products: resData }); //this is an asynchronous function
       });
   }
 
@@ -54,42 +57,30 @@ class SupplierCard extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        {this.state.suppliers.map((data, index) => {
+        {this.state.products.map((data, index) => {
           return (
             <div key={index}>
               <Card className={classes.card}>
                 <CardActionArea>
                   <CardMedia
-                    onClick={() => {
-                      console.log("clicked!!!!!!!!");
-                      this.props.moveToSupplier(data.supplier_name);
-                    }}
                     className={classes.media}
-                    image={"http://34.222.158.120:80/imgs/" + data.img_src}
+                    image={"http://34.222.158.120:80/imgs/" + data.prd_img}
                     // image={require({data.img_src})}
                     title="Supplier"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                      {data.supplier_name}
+                      {data.prd_name}
                     </Typography>
-                    <Typography component="p">{data.details}</Typography>
                   </CardContent>
                 </CardActionArea>
                 <CardActions className={classes.card_action_bottom}>
                   <Button size="small" color="primary">
-                    Order
-                  </Button>
-                  <Button size="small" color="primary">
-                    View
+                    Add
                   </Button>
                   <IconButton className={classes.text_icons} aria-label="Rate">
-                    <p>{data.rate}</p>
-                    <IconStar />
-                  </IconButton>
-                  <IconButton className={classes.text_icons} aria-label="Share">
-                    <p>{data.precentege}</p>
-                    <ShareIcon />
+                    <p>{data.prd_price}</p>
+                    <MoneyIcon />
                   </IconButton>
                 </CardActions>
               </Card>
@@ -101,4 +92,4 @@ class SupplierCard extends React.Component {
   }
 }
 
-export default withStyles(styles)(SupplierCard);
+export default withStyles(styles)(SupplierProductsCard);

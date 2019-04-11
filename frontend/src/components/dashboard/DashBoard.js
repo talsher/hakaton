@@ -15,6 +15,8 @@ import GradeIcon from "@material-ui/icons/Grade";
 import LocalShipping from "@material-ui/icons/LocalShipping";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import Store from "@material-ui/icons/Store";
+import SupplierCard from "./SupplierCard";
+import SupplierProductCard from "./SupplierProductsCard";
 
 import Button from "@material-ui/core/Button";
 import mini_logo from "../../assets/mini_logo.jpeg";
@@ -55,10 +57,26 @@ const styles = theme => ({
 });
 
 class DashBoard extends Component {
+  state = { supplier_name: "" };
+
   constructor(props) {
     super(props);
     this.props = props;
   }
+
+  moveToSupplierPage = supplier_name => {
+    this.setState({ supplier_name: supplier_name });
+  };
+
+  checkPage = () => {
+    console.log("i was clicked!!!");
+    if (this.state.supplier_name.localeCompare("") == 0) {
+      return <SupplierCard moveToSupplier={this.moveToSupplierPage} />;
+    } else {
+      console.log("i was changed!!!");
+      return <SupplierProductCard supplier_name={this.state.supplier_name} />;
+    }
+  };
 
   render() {
     const { classes } = this.props;
@@ -130,6 +148,7 @@ class DashBoard extends Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
+          {this.checkPage()}
         </main>
       </div>
     );
