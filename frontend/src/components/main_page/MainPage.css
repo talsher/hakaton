@@ -1,0 +1,24 @@
+.MainPage-body {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+.MainPage-body-part {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.MainPage-divider {
+  margin-bottom: 20px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
