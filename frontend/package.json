@@ -10,7 +10,8 @@
     "react-animated-slider": "^1.1.4",
     "react-dom": "^16.8.6",
     "react-flux": "^1.0.1",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "react-slick": "^0.23.2"
   },
   "scripts": {
     "start": "react-scripts start",
