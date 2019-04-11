@@ -6,7 +6,7 @@ import DashboardControl from "./DashboardControl";
 
 const classes = theme => ({
   appBar: {
-    zIndex: theme.zIndex.drawer + 1
+    zIndex: theme.zIndex.drawer + 10
   }
 });
 class DashBoard extends Component {
@@ -21,7 +21,7 @@ class DashBoard extends Component {
       >
         <DashBoardNavbar className={classes.appBar} />
         <div>
-          <DashboardControl style={{ marginTop: 50 }} />
+          <DashboardControl style={{ marginTop: 500 }} />
           <div>THis is me!!!</div>
         </div>
       </div>
