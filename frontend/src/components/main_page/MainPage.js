@@ -3,19 +3,19 @@ import logo from "../../assets/logo.jpeg";
 import HowFlow from "../../assets/How_flow.png";
 import "./MainPage.css";
 import ButtonAppBar from "./topnav.js";
-import {
-  Paper,
-  Typography,
-  Grid,
-  GridList,
-  GridListTile
-} from "@material-ui/core";
+import { Paper, Typography, Grid, GridList, GridListTile, Button } from "@material-ui/core";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import IconButton from "@material-ui/core/IconButton";
 import Divider from "@material-ui/core/Divider";
 import Slider from "react-animated-slider";
 import "react-animated-slider/build/horizontal.css";
-import partners from "../../assets/partners.png";
+import partners from '../../assets/partners.png';
+import car_sup from '../../assets/MainPageImages/car_sup2.png';
+import off_sup from '../../assets/MainPageImages/off_sup2.png';
+import veg_sup from '../../assets/MainPageImages/veg_sup2.png';
+import Buying from '../../assets/MainPageImages/buying.png';
+import cart from '../../assets/MainPageImages/shoppingcart.png';
+import email from '@material-ui/icons'
 
 function HomeIcon(props) {
   return (
@@ -81,70 +81,56 @@ class MainPage extends Component {
           moveToDashboard={this.props.moveToDashboard}
         />
         <div className="MainPage-body">
-          <Slider autoplay={1000} infinite={true}>
+          <Slider autoplay={2000} infinite={true}>
             <div key={0}>
-              <div className="container">
-                <img
-                  width="80%"
-                  height="100%"
-                  src="https://images.unsplash.com/photo-1441123285228-1448e608f3d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
-                />
-                <div className="centered">Centered</div>
+              <div className='container'>
+                <img width='80%' height='100%' src={veg_sup}></img>
+                <div className="centered">
+                <div>Get more out of your suplier today</div>
+                <Button variant="outlined" style={{backgroundColor: '#ffff'}}>More info</Button>
+                </div>
               </div>
             </div>
             <div key={1}>
-              <div className="container">
-                <img
-                  width="80%"
-                  height="100%"
-                  src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80"
-                />
+              <div className='container'>
+                <img width='80%' height='100%' src={car_sup}></img>
+                <div className='centered'>for every service you need</div>
               </div>
             </div>
             <div key={2}>
-              <img
-                width="80%"
-                height="100%"
-                src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_light_color_272x92dp.png"
-              />
-            </div>
-            <div key={3}>
-              <img
-                width="80%"
-                height="100%"
-                src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_light_color_272x92dp.png"
-              />
+            <div className='container'>
+              <img width='80%' height='100%' src={off_sup}></img>
+              <div className='centered'>Supply.Me is here for you</div>
+              </div>
             </div>
           </Slider>
           <PagePart headline="About" anchors={this.anchors.about}>
-            <Typography variant="h4" align="center">
-              Suplly.Me enables multiple businesses to act as a single purchaser
-              through the power of community
-            </Typography>
+          <div>
+          <Typography variant='h4' align='center' >Suplly.Me enables multiple businesses to act as a single purchaser through the power of community</Typography>
+          <img className='center' src={Buying} />
+          <Typography variant='h4' align='center'>Buying products together increases order quantity, unlocks otherwise unreachable wholesale prices, removes minimum order limits, and improves purchase terms
+          </Typography>
+            </div>
           </PagePart>
 
           <PagePart headline="Benifits" anchors={this.anchors.benifits}>
-            <div className="HomeList">
+            <div className='HomeList'>
+              <img src={cart} />
               <li>Significant discount on all services and supplies</li>
               <li>Improved purchase conditions</li>
               <li>Yearly purchase refund</li>
             </div>
           </PagePart>
           <PagePart
-            headline="How does it work"
+            headline="How it works"
             anchors={this.anchors.how_it_works}
           >
             <img width="100%" height="100%" src={HowFlow} />
           </PagePart>
-          <PagePart
-            className="ImagePartner"
-            headline="Partners"
-            anchors={this.anchors.partners}
-          >
-            <img src={partners} />
-          </PagePart>
+          
           <PagePart headline="Contants" anchors={this.anchors.contants}>
-            <img src={logo} />
+          <a style={{fontSize: 30}} href='info@Suplly.Me'>info@Suplly.Me</a>
+          <img className='center' src={logo} />
           </PagePart>
         </div>
       </div>
@@ -153,3 +139,11 @@ class MainPage extends Component {
 }
 
 export default MainPage;
+
+
+/**
+ *           <PagePart className='ImagePartner' headline="Partners" anchors={this.anchors.partners}>
+              <img src={partners} />
+          </PagePart>
+ * 
+ */
