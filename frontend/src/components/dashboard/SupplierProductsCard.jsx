@@ -20,23 +20,25 @@ import SubmitIcon from "@material-ui/icons/LocalShipping";
 const styles = theme => ({
   card: {
     position: "relative",
-    width: 300,
-    height: 330,
+    width: 250,
+    height: 380,
     float: "left",
     marginRight: 12,
     marginTop: 12
   },
   media: {
-    flex: 1,
-    resizeMode: "contain",
-    ...StyleSheet.absoluteFillObject,
-    height: 140
+    height: 155,
+    width: 110,
+    marginLeft: 45,
+    marginTop: 20,
+    marginBottom: 20
   },
   text_icons: {
     fontSize: "20px"
   },
   card_action_bottom: {
     position: "absolute",
+    marginLeft: 20,
     bottom: 0
   },
   extendedIcon: {
