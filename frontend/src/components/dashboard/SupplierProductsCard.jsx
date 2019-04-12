@@ -102,9 +102,11 @@ class SupplierProductsCard extends React.Component {
 
   handleSubmit = () => {
     console.log("why im here");
+    let total_cost = 0;
     let products = this.state.products
       .filter(product => product.added)
       .map((product, index) => {
+        total_cost += product.count * product.prd_price;
         return {
           prd_name: product.prd_name,
           count: product.count
@@ -116,10 +118,7 @@ class SupplierProductsCard extends React.Component {
         supplier_name: this.props.supplier_name,
         status: "new",
         products: products,
-        total_cost: this.state.products.reduce(
-          (prev, curr) => prev + parseInt(curr.prd_price),
-          0
-        )
+        total_cost: total_cost
       }
     };
 
