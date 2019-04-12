@@ -17,6 +17,7 @@ import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import Store from "@material-ui/icons/Store";
 import SupplierCard from "./SupplierCard";
 import SupplierProductCard from "./SupplierProductsCard";
+import Orders from "./Orders";
 
 import Button from "@material-ui/core/Button";
 import mini_logo from "../../assets/mini_logo.jpeg";
@@ -57,24 +58,36 @@ const styles = theme => ({
 });
 
 class DashBoard extends Component {
-  state = { supplier_name: "" };
+  state = { supplier_name: "", page: "suppliers" };
 
   constructor(props) {
     super(props);
     this.props = props;
   }
-
+  moveToOrderingPage = () => {
+    this.setState({ page: "suppliers" });
+  };
   moveToSupplierPage = supplier_name => {
-    this.setState({ supplier_name: supplier_name });
+    this.setState({ supplier_name: supplier_name, page: "supplier_products" });
+  };
+
+  moveToOrdersPage = () => {
+    this.setState({ page: "orders" });
   };
 
   checkPage = () => {
     console.log("i was clicked!!!");
-    if (this.state.supplier_name.localeCompare("") == 0) {
+    if (this.state.page.localeCompare("suppliers") == 0) {
       return <SupplierCard moveToSupplier={this.moveToSupplierPage} />;
-    } else {
-      console.log("i was changed!!!");
-      return <SupplierProductCard supplier_name={this.state.supplier_name} />;
+    } else if (this.state.page.localeCompare("supplier_products") == 0) {
+      return (
+        <SupplierProductCard
+          supplier_name={this.state.supplier_name}
+          moveToOrdersPage={this.moveToOrdersPage}
+        />
+      );
+    } else if (this.state.page.localeCompare("orders") == 0) {
+      return <Orders customerName="raed" />;
     }
   };
 
@@ -124,14 +137,14 @@ class DashBoard extends Component {
               <ListItemText primary="Summary" />
             </ListItem>
 
-            <ListItem button key="My orders">
+            <ListItem button key="My orders" onClick={this.moveToOrdersPage}>
               <ListItemIcon>
                 <LocalShipping />
               </ListItemIcon>
               <ListItemText primary="My orders" />
             </ListItem>
 
-            <ListItem button key="New order">
+            <ListItem button key="New order" onClick={this.moveToOrderingPage}>
               <ListItemIcon>
                 <ShoppingCart />
               </ListItemIcon>

@@ -2,8 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const AWS = require("aws-sdk");
 const fs = require("fs");
-const uuidv1 = require('uuid/v1');
-const url = require('url');
+const uuidv1 = require("uuid/v1");
+const url = require("url");
 
 const app = express();
 const router = express.Router();
@@ -44,18 +44,17 @@ router.route("/getAll").get((req, res) => {
   });
 });
 
-
 //insert new customer
-router.route("/insert/customer").post((req, res) =>{
+router.route("/insert/customer").post((req, res) => {
   var req_body = req.body;
-	var params = {
-		TableName: "customers",
-		Item: req_body["item"]
-	};
-	docClient.put(params,function(err, data) {
-  		if (err) res.status(400).send(err);
-  		else res.status(200).send("success");
-  	});
+  var params = {
+    TableName: "customers",
+    Item: req_body["item"]
+  };
+  docClient.put(params, function(err, data) {
+    if (err) res.status(400).send(err);
+    else res.status(200).send("success");
+  });
 });
 
 // insert new supplier
@@ -69,9 +68,7 @@ router.route("/insert/supplier").post((req, res) => {
     if (err) res.status(400).send(err);
     else res.status(200).send("success");
   });
-
 });
-
 
 // insert specific order
 router.route("/insert/order").post((req, res) => {
@@ -84,13 +81,11 @@ router.route("/insert/order").post((req, res) => {
     TableName: "orders",
     Item: item_obj
   };
-  docClient.put(params, function(err, data){
+  docClient.put(params, function(err, data) {
     if (err) res.status(400).post(err);
     else res.status(200).send("success");
   });
-
 });
-
 
 //get all suppliers
 router.route("/get/suppliers").get((req, res) => {
@@ -110,25 +105,25 @@ router.route("/get/orders").get((req, res) => {
   var customer_name = query.customer_name;
   var params = {
     TableName: "orders",
-    ExpressionAttributeValues: {':name' : customer_name},
-    ProjectionExpression: "order_id, supplier_name, products, #status_order",
+    ExpressionAttributeValues: { ":name": customer_name },
+    ProjectionExpression:
+      "order_id, supplier_name, products, #status_order, total_cost",
     ExpressionAttributeNames: {
-        "#customer_name": "customer_name",
-        '#status_order': "status"
+      "#customer_name": "customer_name",
+      "#status_order": "status"
     },
-    FilterExpression: '#customer_name = :name'
+    FilterExpression: "#customer_name = :name"
   };
-  docClient.scan(params, function(err, data){
+  docClient.scan(params, function(err, data) {
     if (err) {
       res.status(400).send(err);
-    } else{
+    } else {
       res.status(200).send(data.Items);
     }
   });
-
 });
 
-//get supplier's roducts 
+//get supplier's roducts
 router.route("/supplier/products").get((req, res) => {
   var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
@@ -136,18 +131,17 @@ router.route("/supplier/products").get((req, res) => {
   var params = {
     TableName: "suppliers",
     KeyConditionExpression: "#supplierN = :supplierV",
-    ExpressionAttributeNames:{
-        "#supplierN": "supplier_name"
+    ExpressionAttributeNames: {
+      "#supplierN": "supplier_name"
     },
     ExpressionAttributeValues: {
-      ':supplierV': supplier_name
+      ":supplierV": supplier_name
     }
-
   };
-  docClient.query(params, function(err, data){
+  docClient.query(params, function(err, data) {
     if (err) {
       res.status(400).send(err);
-    } else{
+    } else {
       res.status(200).send(data.Items[0].products);
     }
   });
@@ -162,17 +156,17 @@ router.route("/get/order").get((req, res) => {
   var params = {
     TableName: "orders",
     ExpressionAttributeValues: {
-      ':id': order_id
+      ":id": order_id
     },
     KeyConditionExpression: "#id = :id",
     ExpressionAttributeNames: {
       "#id": "order_id"
     }
   };
-  docClient.query(params, function(err, data){
+  docClient.query(params, function(err, data) {
     if (err) {
       res.status(400).send(err);
-    } else{
+    } else {
       res.status(200).send(data.Items);
     }
   });
@@ -183,29 +177,26 @@ router.route("/update_status/order").post((req, res) => {
   var order_id = req_body["order_id"];
   var new_status = req_body["item"]["new_status"];
   var params = {
-    TableName:"orders",
-    Key:{
-        "order_id": order_id
+    TableName: "orders",
+    Key: {
+      order_id: order_id
     },
     UpdateExpression: "set #current_status = :s",
-    ExpressionAttributeValues:{
-      ":s":new_status
+    ExpressionAttributeValues: {
+      ":s": new_status
     },
-    ExpressionAttributeNames:{
+    ExpressionAttributeNames: {
       "#current_status": "status"
     }
   };
   docClient.update(params, function(err, data) {
     if (err) {
-        res.status(400).send(err);
+      res.status(400).send(err);
     } else {
-        res.status(200).send("succeded");
+      res.status(200).send("succeded");
     }
+  });
 });
-});
-
-
-
 
 // router.route("/create/suppliersTable").post((req,res)=>{
 //   var params = {
@@ -217,8 +208,8 @@ router.route("/update_status/order").post((req, res) => {
 //         {AttributeName: "supplierName", KeyType: "S"},
 //         {AttributeName: "kind", KeyType: "S"}
 //       ],
-//       ProvisionedThroughput: {       
-//         ReadCapacityUnits: 10, 
+//       ProvisionedThroughput: {
+//         ReadCapacityUnits: 10,
 //         WriteCapacityUnits: 10
 //       }
 //   };
@@ -231,7 +222,6 @@ router.route("/update_status/order").post((req, res) => {
 //   });
 
 // });
-
 
 app.use("/", router);
 app.listen(4000, () => console.log("Server running on 4000"));
