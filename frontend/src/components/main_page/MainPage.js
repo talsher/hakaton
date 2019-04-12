@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import logo from "../../assets/logo.jpeg";
-import HowFlow from "../../assets/How_flow.png"
+import HowFlow from "../../assets/How_flow.png";
 import "./MainPage.css";
 import ButtonAppBar from "./topnav.js";
 import { Paper, Typography, Grid, GridList, GridListTile, Button } from "@material-ui/core";
@@ -75,7 +75,11 @@ class MainPage extends Component {
       <div
         style={{ backgroundColor: "#d9d9d9", paddingTop: this.addedPadding }}
       >
-        <ButtonAppBar anchors={this.anchors} addedPadding={this.addedPadding} />
+        <ButtonAppBar
+          anchors={this.anchors}
+          addedPadding={this.addedPadding}
+          moveToDashboard={this.props.moveToDashboard}
+        />
         <div className="MainPage-body">
           <Slider autoplay={2000} infinite={true}>
             <div key={0}>
@@ -121,7 +125,7 @@ class MainPage extends Component {
             headline="How it works"
             anchors={this.anchors.how_it_works}
           >
-            <img width='100%' height='100%' src={HowFlow} />
+            <img width="100%" height="100%" src={HowFlow} />
           </PagePart>
           
           <PagePart headline="Contants" anchors={this.anchors.contants}>

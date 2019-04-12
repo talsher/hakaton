@@ -9,9 +9,10 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
+import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
 import IconStar from "@material-ui/icons/StarRate";
-import ShareIcon from "@material-ui/icons/Share";
+import CallReceived from "@material-ui/icons/CallReceived";
 
 const styles = {
   card: {
@@ -23,6 +24,9 @@ const styles = {
     marginBottom: 12
   },
   media: {
+    flex: 1,
+    resizeMode: 'contain',
+    ...StyleSheet.absoluteFillObject,
     height: 140
   },
   text_icons: {
@@ -77,19 +81,14 @@ class SupplierCard extends React.Component {
                   </CardContent>
                 </CardActionArea>
                 <CardActions className={classes.card_action_bottom}>
-                  <Button size="small" color="primary">
-                    Order
-                  </Button>
-                  <Button size="small" color="primary">
-                    View
-                  </Button>
+
                   <IconButton className={classes.text_icons} aria-label="Rate">
                     <p>{data.rate}</p>
                     <IconStar />
                   </IconButton>
                   <IconButton className={classes.text_icons} aria-label="Share">
-                    <p>{data.precentege}</p>
-                    <ShareIcon />
+                    <p>{data.precentage}</p>
+                    <CallReceived />
                   </IconButton>
                 </CardActions>
               </Card>
