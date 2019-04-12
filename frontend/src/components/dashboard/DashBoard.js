@@ -58,7 +58,7 @@ const styles = theme => ({
 });
 
 class DashBoard extends Component {
-  state = { supplier_name: "", page: "suppliers" };
+  state = { supplier_name: "", page: "orders" };
 
   constructor(props) {
     super(props);
@@ -130,12 +130,12 @@ class DashBoard extends Component {
         >
           <div className={classes.toolbar} />
           <List>
-            <ListItem button key="Summary">
+            {/* <ListItem button key="Summary">
               <ListItemIcon>
                 <GradeIcon />
               </ListItemIcon>
               <ListItemText primary="Summary" />
-            </ListItem>
+            </ListItem> */}
 
             <ListItem button key="My orders" onClick={this.moveToOrdersPage}>
               <ListItemIcon>
@@ -151,12 +151,12 @@ class DashBoard extends Component {
               <ListItemText primary="New order" />
             </ListItem>
 
-            <ListItem button key="My suppliers">
+            {/* <ListItem button key="My suppliers">
               <ListItemIcon>
                 <Store />
               </ListItemIcon>
               <ListItemText primary="My suppliers" />
-            </ListItem>
+            </ListItem> */}
           </List>
         </Drawer>
         <main className={classes.content}>
